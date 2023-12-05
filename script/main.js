@@ -62,24 +62,33 @@ function loggingInHandler(e) {
     errorMsg.style.backgroundColor = 'yellow'
     console.log('error username :', username)
   } else {
-    console.log('valid')
+    console.log('valid username')
     const errorMsg = login.querySelector('.error')
     errorMsg.innerHTML = ''
   }
 
-  //   if(!validateEmail(email)){
-  //     const errorMsg = login.querySelector('.error')
-  //     errorMsg.innerHTML = 'Invalid email'
-  //     errorMsg.style.color = 'red'
-  //     errorMsg.style.backgroundColor = 'yellow'
-  //     console.log('error username')
-  //   }
-  //   if(!validatePassword(email)){
-  //     const errorMsg = login.querySelector('.error')
-  //     errorMsg.innerHTML = 'Password should have a-z A-Z 0-9 spatials letter.'
-  //     errorMsg.style.color = 'red'
-  //     errorMsg.style.backgroundColor = 'yellow'
-  //     console.log('error username')
-  //   }
-  //
+  if (!validateEmail(email)) {
+    const errorMsg = login.querySelector('.error')
+    errorMsg.innerHTML = 'Invalid email'
+    errorMsg.style.color = 'red'
+    errorMsg.style.backgroundColor = 'yellow'
+    console.log('error Email')
+  }
+  else {
+    console.log('valid Email')
+    const errorMsg = login.querySelector('.error')
+    errorMsg.innerHTML = ''
+  }
+  if (!validatePassword(password)) {
+    const errorMsg = login.querySelector('.error')
+    errorMsg.innerHTML = 'Password should have a-z A-Z 0-9 spatials letter.'
+    errorMsg.style.color = 'red'
+    errorMsg.style.backgroundColor = 'yellow'
+    console.log('error pass')
+  }
+  else {
+    console.log('valid Pass')
+    const errorMsg = login.querySelector('.error')
+    errorMsg.innerHTML = ''
+  }
 }

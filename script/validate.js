@@ -37,12 +37,58 @@ const validateUsernameRegEx2 = (username) => {
 }
 
 const validateEmail = (email) => {
-    if(email === undefined || email.length === 0){
-        return false
-    }
-    
+  if (!email || email.length === 0) {
+    return false
+  }
+
+  const atIndex = email.indexOf('@')
+  const dotIndex = email.lastIndexOf('.')
+
+  if (atIndex < 1 || dotIndex < atIndex + 2 || dotIndex + 2 >= email.length) {
+    return false
+  }
+
+  const suffix = email.slice(dotIndex)
+  const allowedSuffixes = ['.com']
+
+  if (allowedSuffixes.some((allowed) => suffix.endsWith(allowed))) {
+    return true
+  } else {
+    return false
+  }
 }
 
-const validatePassword = (password) => {}
+const validatePassword = (password) => {
+  if (!password || password.length < 8) {
+    console.log('Password must be at least 8 characters long.')
+    return false
+  }
 
-export { validateEmail, validateUsernameRegEx, validateUsernameRegEx2, validatePassword, validateUsername }
+  // Check for at least one letter and one digit
+  if (!/[a-z]/.test(password) || !/\d/.test(password)) {
+    console.log('Password must contain at least one letter and one digit.')
+    return false
+  }
+
+  if (!/[A-Z]/.test(password)) {
+    console.log('Password must contain at least one letter and one digit.')
+    return false
+  }
+
+  // Check for allowed special characters
+  if (!/[-+@#?!/]/.test(password)) {
+    console.log('Password may include @, #, ?, and /.')
+    return false
+  }
+
+  console.log('Password is valid.')
+  return true
+}
+
+export {
+  validateEmail,
+  validateUsernameRegEx,
+  validateUsernameRegEx2,
+  validatePassword,
+  validateUsername,
+}
